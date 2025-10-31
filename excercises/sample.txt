@@ -1,0 +1,23 @@
+# Replace 'foo' examples
+
+foo bar baz
+the_foo_case should become the_bar_case
+foo,foo,foo -> triple foo
+path/to/foo/file.txt
+JSON: {"key":"foo","arr":["foo","zap"]}
+
+# Notes:
+# - Match the whole word 'foo':
+#     :%s/\<foo\>/bar/g
+# - Replace across all files in current repo (recursive):
+#     :vimgrep /\<foo\>/gj **/*
+#     :cdo s//bar/g | update
+#   (cdo = run :substitute for each quickfix entry; update writes changed files)
+#
+# Alternative (use arglist with git tracked files):
+#     :args `git ls-files`
+#     :argdo %s/\<foo\>/bar/ge | update
+#
+# Preview changes only:
+#     :vimgrep /\<foo\>/j **/*
+#     :copen    " inspect list
